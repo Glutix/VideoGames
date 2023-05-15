@@ -1,6 +1,7 @@
 import {
 	GET_VIDEOGAMES,
-	GET_GAMEBYID,
+	GET_GAME_BY_ID,
+	GET_GAME_BY_NAME,
 	CLEAN_DETAIL,
 	TOGGLE_MENU,
 } from "./action-types";
@@ -9,6 +10,7 @@ const initialState = {
 	games: [],
 	gameDetail: {},
 	toglleMenu: false,
+	gamesByName: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,7 +21,7 @@ const reducer = (state = initialState, action) => {
 				games: action.payload,
 			};
 
-		case GET_GAMEBYID:
+		case GET_GAME_BY_ID:
 			return {
 				...state,
 				gameDetail: action.payload,
@@ -36,6 +38,13 @@ const reducer = (state = initialState, action) => {
 				...state,
 				toglleMenu: action.payload,
 			};
+
+		case GET_GAME_BY_NAME:
+			return {
+				...state,
+				gamesByName: action.payload,
+			};
+
 		default:
 			return { ...state };
 	}

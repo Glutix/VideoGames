@@ -2,22 +2,15 @@ import React from "react";
 import Card from "../Card/Card";
 import style from "./Cards.module.css";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getVideoGames } from "../../redux/actions";
 
-const Cards = () => {
+const Cards = ({ games, isOpen }) => {
 	const dispatch = useDispatch();
 
-	const { games, isOpen } = useSelector((state) => ({
-		games: state.games,
-		isOpen: state.toglleMenu,
-	}));
-
 	useEffect(() => {
-		dispatch(getVideoGames());
-	}, [dispatch]);
-
-	console.log(isOpen);
+		if (!games.length) dispatch(getVideoGames());
+	}, [games]);
 
 	return (
 		<div className={`${style.conteiner} ${isOpen && style.isOpenOn}`}>

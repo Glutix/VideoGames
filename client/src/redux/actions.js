@@ -1,10 +1,10 @@
 import axios from "axios";
 import {
 	GET_VIDEOGAMES,
-	GET_GAMEBYID,
+	GET_GAME_BY_ID,
+	GET_GAME_BY_NAME,
 	CLEAN_DETAIL,
 	TOGGLE_MENU,
-	GET_GAMEBYNAME,
 } from "./action-types";
 const HOST = import.meta.env.VITE_HOST;
 
@@ -23,7 +23,7 @@ export const getById = (id) => {
 	return async (dispatch) => {
 		try {
 			const { data } = await axios(`${HOST}/${id}`);
-			return dispatch({ type: GET_GAMEBYID, payload: data });
+			return dispatch({ type: GET_GAME_BY_ID, payload: data });
 		} catch (error) {
 			console.log(error.message);
 		}
@@ -43,7 +43,12 @@ export const handleToggle = (isOpen) => {
 };
 
 export const getName = (name) => {
-	return (dispatch) => {
-		return dispatch({ type: GET_GAMEBYNAME, payload: name });
+	return async (dispatch) => {
+		try {
+			const { data } = await axios(`${HOST}/search?name=${name}`);
+			return dispatch({ type: GET_GAME_BY_NAME, payload: data });
+		} catch (error) {
+			console.log(error.message);
+		}
 	};
 };

@@ -79,11 +79,12 @@ const getNameGames = async (req, res) => {
 		const responseDB = await Videogame.findAll({
 			where: { name: { [Op.iLike]: `%${name}%` } },
 			include: {
+				as: "genres",
 				model: Genre,
 			},
 		});
 
-		if (!data.results.length || !responseDB.length) {
+		if (!data.results.length && !responseDB.length) {
 			throw new Error("No existe el game");
 		}
 
