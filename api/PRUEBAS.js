@@ -80,13 +80,9 @@ let reseponseDB = [
 	},
 ];
 
-const response = [...reseponseDB, ...responseAPI]
+const response = [...reseponseDB, ...responseAPI];
 
 console.log(response);
-
-
-
-
 
 const dataxd = [];
 const api = {};
@@ -95,3 +91,12 @@ if (!api || !dataxd.length) {
 } else {
 	console.log(false);
 }
+
+const objrandom = { detail: ["action", "asd", "xd"] };
+const asd = objrandom.detail.join(" ")
+console.log(asd);
+
+
+const detalles = "action,asd,xd"
+
+console.log(detalles.split(",").join(" "))

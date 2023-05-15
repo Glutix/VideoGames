@@ -6,8 +6,10 @@ module.exports = (database) => {
 	database.define("Genre", {
 		id: {
 			type: DataTypes.INTEGER,
-			primaryKey: true,
+			autoIncrement: true,
 			allowNull: false,
+			primaryKey: true,
+			unique: true,
 		},
 		name: {
 			type: DataTypes.STRING,

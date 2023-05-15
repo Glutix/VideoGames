@@ -1,6 +1,7 @@
 //! Import
 require("dotenv").config();
 const axios = require("axios");
+const { Genre } = require("../db");
 
 //! Const
 const URL = process.env.API;
@@ -14,7 +15,6 @@ const allGenres = async (req, res) => {
 			const list = {
 				id: genre.id,
 				name: genre.name,
-				image: genre.image_background,
 				games: genre.games.map((game) => game.name),
 			};
 			return list;
@@ -26,4 +26,20 @@ const allGenres = async (req, res) => {
 	}
 };
 
-module.exports = { allGenres };
+//! Post gender
+const postGender = async (req, res) => {
+	try {
+		const { name, games } = req.body;
+		if (!name || !games) throw new Error("datos incompletos");
+
+		const newGenre = await Genre.create({ name });
+
+		await newGenre.addGames(games);
+
+		return res.status(201).json(newGenre);
+	} catch (error) {
+		return res.status(500).json({ error: error.message });
+	}
+};
+
+module.exports = { allGenres, postGender };

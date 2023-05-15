@@ -1,8 +1,9 @@
 //! Import
 const axios = require("axios");
 require("dotenv").config();
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 const { Op } = require("sequelize");
+const { genres } = require("../models");
 
 //! Const
 const URL = process.env.API;
@@ -14,13 +15,26 @@ const getAllGames = async (req, res) => {
 		const { data } = await axios.get(`${URL}games?key=${KEY}`);
 		if (!data) throw new Error("bad request");
 
-		const responseDB = await Videogame.findAll();
-		const responseApi = data.results.map((game) => {
+		const responseDB = await Videogame.findAll({
+			//de todos los usuarios que trae
+			include: {
+				model: Genre,
+				as: "genres", //incluye al modelo genre
+				attributes: ["name"],
+				through: {
+					attributes: [], //excluye la relacion con la tabla intermedia
+				},
+			},
+		});
+
+		const results = [...responseDB, ...data.results];
+
+		const response = results.map((game) => {
 			const games = {
 				id: game.id,
 				name: game.name,
 				image: game.background_image,
-				platforms: game.platforms.map((item) => item.platform.name).sort(),
+				platforms: game.platforms.map((item) => item.platform?.name).sort(),
 				released: game.released,
 				rating: game.rating,
 				genres: game.genres.map((item) => item.name).sort(),
@@ -28,7 +42,6 @@ const getAllGames = async (req, res) => {
 			return games;
 		});
 
-		const response = [...responseDB, ...responseApi];
 		return res.status(200).json(response);
 	} catch (error) {
 		return res.status(500).json({ error: error.message });
@@ -41,8 +54,6 @@ const getIdGames = async (req, res) => {
 		const { idVideogame } = req.params;
 		const { data } = await axios.get(`${URL}games/${idVideogame}?key=${KEY}`);
 		if (!data.id) throw new Error("No existe id");
-
-		const responseDB = await Videogame.findByPK(idVideogame);
 
 		const game = {
 			id: idVideogame,
@@ -67,6 +78,9 @@ const getNameGames = async (req, res) => {
 		const { data } = await axios.get(`${URL}games?search=${name}&key=${KEY}`);
 		const responseDB = await Videogame.findAll({
 			where: { name: { [Op.iLike]: `%${name}%` } },
+			include: {
+				model: Genre,
+			},
 		});
 
 		if (!data.results.length || !responseDB.length) {
@@ -98,27 +112,19 @@ const getNameGames = async (req, res) => {
 //! Post Game
 const postGame = async (req, res) => {
 	try {
-		const { name, description, platforms, image, released, rating, genres } =
-			req.body;
-		if (
-			!name ||
-			!description ||
-			!platforms ||
-			!image ||
-			!released ||
-			!rating ||
-			!genres
-		) {
+		const { name, description, platforms, image, released, rating } = req.body;
+
+		if (!name || !description || !platforms || !image || !released || !rating) {
 			throw new Error("Datos incompletos");
 		}
 
 		const game = {
 			name,
-			description,
-			platforms,
 			image,
+			platforms,
 			released,
 			rating,
+			description,
 		};
 
 		const gameFound = await Videogame.findOne({ where: { name: `${name}` } });

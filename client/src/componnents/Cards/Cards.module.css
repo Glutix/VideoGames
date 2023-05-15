@@ -1,0 +1,30 @@
+.conteiner {
+	display: flex;
+	padding: 2rem;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	gap: 2rem;
+	margin-top: 4rem;
+}
+
+
+@media screen and (max-width: 780px) {
+	.conteiner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.isOpenOn{
+		display: none;
+	}
+}
+
+
+@media screen and (min-width: 780px) and (max-width: 1000px) {
+	.conteiner {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+}
