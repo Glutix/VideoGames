@@ -3,7 +3,6 @@ const axios = require("axios");
 require("dotenv").config();
 const { Videogame, Genre } = require("../db");
 const { Op } = require("sequelize");
-const { genres } = require("../models");
 
 //! Const
 const URL = process.env.API;
@@ -129,7 +128,7 @@ const postGame = async (req, res) => {
 		};
 
 		const gameFound = await Videogame.findOne({ where: { name: `${name}` } });
-		if (gameFound) throw new Error("Ya existe es juego");
+		if (gameFound) throw new Error("Ya existe un juego con este nombre");
 
 		const results = await Videogame.create(game);
 		return res.status(201).json(results);
@@ -137,5 +136,6 @@ const postGame = async (req, res) => {
 		return res.status(500).json({ error: error.message });
 	}
 };
+
 
 module.exports = { getAllGames, getIdGames, getNameGames, postGame };

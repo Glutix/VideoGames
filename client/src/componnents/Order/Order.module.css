@@ -1,0 +1,13 @@
+.conteiner {
+	display: flex;
+	flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.select{
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+}

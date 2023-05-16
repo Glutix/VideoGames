@@ -2,19 +2,23 @@ import React from "react";
 import style from "./NavBar.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleToggle } from "../../redux/actions";
 
 const NavBar = () => {
 	//const [isOpen, setIsOpen] = useState(false);
-
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const isOpen = useSelector((state) => state.toglleMenu);
 
 	const handleClick = () => {
 		dispatch(handleToggle(!isOpen));
+	};
+
+	const hangleNewGame = () => {
+		navigate("/post");
 	};
 
 	return (
@@ -25,6 +29,15 @@ const NavBar = () => {
 
 			<div className={`${isOpen && style.search}`}>
 				<SearchBar />
+			</div>
+
+			<div className={style.conteinerNewGame}>
+				<button onClick={hangleNewGame} className={style.btnGame}>
+					+
+				</button>
+				<p onClick={hangleNewGame} className={style.textGame}>
+					New Game
+				</p>
 			</div>
 
 			<div
@@ -39,7 +52,7 @@ const NavBar = () => {
 					About
 				</Link>
 
-				<Link to="/" className={style.link}>
+				<Link to="/" className={style.link} onClick={handleClick}>
 					Log Out
 				</Link>
 			</div>

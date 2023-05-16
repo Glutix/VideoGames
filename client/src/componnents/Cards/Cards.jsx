@@ -2,10 +2,18 @@ import React from "react";
 import Card from "../Card/Card";
 import style from "./Cards.module.css";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getVideoGames } from "../../redux/actions";
+import Filters from "../Filters/Filters";
+import Order from "../Order/Order";
 
-const Cards = ({ games, isOpen }) => {
+const Cards = () => {
+	//! Global State
+	const { games, isOpen } = useSelector((state) => ({
+		games: state.games,
+		isOpen: state.toglleMenu,
+	}));
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -13,17 +21,27 @@ const Cards = ({ games, isOpen }) => {
 	}, [games]);
 
 	return (
-		<div className={`${style.conteiner} ${isOpen && style.isOpenOn}`}>
-			{games.map((game) => {
-				return (
-					<Card
-						key={game.id}
-						id={game.id}
-						name={game.name}
-						image={game.image}
-					/>
-				);
-			})}
+		<div className={style.conteinerPRO}>
+			<section className={style.section}>
+				<Filters />
+				<Order />
+			</section>
+			<div className={`${style.conteiner} ${isOpen && style.isOpenOn}`}>
+				{typeof games !== "string" ? (
+					games.map((game) => {
+						return (
+							<Card
+								key={game.id}
+								id={game.id}
+								name={game.name}
+								image={game.image}
+							/>
+						);
+					})
+				) : (
+					<h1>NO HAY GAMES</h1>
+				)}
+			</div>
 		</div>
 	);
 };

@@ -1,12 +1,21 @@
+.conteinerPRO {
+	margin-top: 4rem;
+}
+
+.section {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 3rem;
+}
+
 .conteiner {
 	display: flex;
 	padding: 2rem;
 	flex-flow: row wrap;
 	justify-content: flex-start;
 	gap: 2rem;
-	margin-top: 4rem;
 }
-
 
 @media screen and (max-width: 780px) {
 	.conteiner {
@@ -15,11 +24,10 @@
 		align-items: center;
 	}
 
-	.isOpenOn{
+	.isOpenOn {
 		display: none;
 	}
 }
-
 
 @media screen and (min-width: 780px) and (max-width: 1000px) {
 	.conteiner {

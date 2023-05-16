@@ -1,0 +1,19 @@
+.conteinerDad {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 4rem;
+}
+
+.conteiner {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
