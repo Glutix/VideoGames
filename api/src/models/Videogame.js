@@ -5,8 +5,8 @@ const { DataTypes } = require("sequelize");
 module.exports = (database) => {
 	database.define("Videogame", {
 		id: {
-			type: DataTypes.INTEGER,
-			autoIncrement: true,
+			type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV4,
 			allowNull: false,
 			primaryKey: true,
 			unique: true,
@@ -19,20 +19,20 @@ module.exports = (database) => {
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
+		released: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		rating: {
+			type: DataTypes.FLOAT,
+			allowNull: true,
+		},
 		platforms: {
 			type: DataTypes.ARRAY(DataTypes.STRING),
 			allowNull: false,
 		},
 		image: {
 			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		released: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		rating: {
-			type: DataTypes.FLOAT,
 			allowNull: false,
 		},
 	});

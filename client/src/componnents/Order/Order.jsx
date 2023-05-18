@@ -12,7 +12,7 @@ const Order = () => {
 
 	//? (Luego modificar la condicion del if)
 	if (stateFilter === "database") {
-		console.log("ACA VA LA DB SI TUVIERA 1");
+		dispatch(orderDB())
 	}
 
 	//? si no, ordeno por api o all
@@ -25,10 +25,9 @@ const Order = () => {
 		<div className={style.conteiner}>
 			<h3>Order: </h3>
 			<select className={style.select} onChange={handleChange}>
-				<option value="order" disabled="disabled">
+				<option selected="Order By" disabled="disabled">
 					Order By
 				</option>
-				<option value="default">Default</option>
 				<option value="ascendente">Ascendente</option>
 				<option value="descendente">Descendente</option>
 			</select>

@@ -2,4 +2,4 @@
 const videogames = require("./Videogame");
 const genres = require("./Genre");
 
-module.exports = { videogames, genres };
+module.exports = { videogames, genres }; // SE BORRO genres

@@ -21,13 +21,13 @@ const Detail = () => {
 		return () => dispatch(cleanDetail());
 	}, [id]);
 
-	//? Peticion adicional
+	/* //? Peticion adicional
 	useEffect(() => {
 		axios(`${API}/${id}/${KEY}`).then(({ data }) => {
 			if (data.results.length) setTrailer(data.results);
 		});
 		return setTrailer({});
-	}, [id]);
+	}, [id]); */
 
 	return (
 		<div className={style.conteiner}>
@@ -46,7 +46,7 @@ const Detail = () => {
 				</div>
 
 				<div className={style.info}>
-					<img className={style.img} src={detail.image} name={detail.name} />
+					<img className={style.img} src={detail?.image} name={detail.name} />
 					<h2 className={style.title2}>Released: </h2>
 					<p className={style.description}>{detail.released}</p>
 

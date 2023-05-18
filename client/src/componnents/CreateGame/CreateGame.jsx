@@ -19,27 +19,6 @@ const CreateGame = () => {
 		description: "",
 	});
 
-	const [stateGenres, setStateGenres] = useState({
-		action: false,
-		indie: false,
-		adventure: false,
-		rpg: false,
-		strategy: false,
-		shooter: false,
-		casual: false,
-		arcade: false,
-		racing: false,
-		fantasy: false,
-	});
-
-	const [statePlatforms, setStatePlatforms] = useState({
-		pc: false,
-		xbox: false,
-		playstation: false,
-		nintendo: false,
-		sega: false,
-	});
-
 	//! Handlers
 	const handleChange = (event) => {
 		const campoActual = event.target.name;
@@ -51,48 +30,28 @@ const CreateGame = () => {
 	};
 
 	const handleGenres = (event) => {
-		event.preventDefault();
-		//recupero el elemento al que se le hizo click
-		const element = event.target.innerText;
-
-		//lo hago minisculas para poder comprar con el state de btn
-		const campoActual = element.toLowerCase();
-		setStateGenres({
-			...stateGenres,
-			[campoActual]: !stateGenres[campoActual],
-		});
+		const genre = event.target.value;
+		setGameData((prevData) => ({
+			...prevData,
+			genres: prevData.genres.includes(genre)
+				? prevData.genres.filter((g) => g !== genre)
+				: [...prevData.genres, genre],
+		}));
 	};
 
 	const handlePlatforms = (event) => {
-		event.preventDefault();
-		//recupero el elemento al que se le hizo click
-		const element = event.target.innerText;
-
-		//lo hago minisculas para poder comprar con el state de btn
-		const campoActual = element.toLowerCase();
-		setStatePlatforms({
-			...statePlatforms,
-			[campoActual]: !statePlatforms[campoActual],
-		});
+		const platform = event.target.value;
+		setGameData((prevData) => ({
+			...prevData,
+			platforms: prevData.platforms.includes(platform)
+				? prevData.platforms.filter((p) => p !== platform)
+				: [...prevData.platforms, platform],
+		}));
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-
-		const genres = Object.entries(stateGenres) //obtengo un array que dentro arrays con [key, value]
-			.filter(([_key, value]) => value === true) //filtro y hago destructurin de los [key, value] y me quedo con los que value coincidan con true
-			.map(([key, _value]) => key); //me quedo solamente con los key
-
-		const platforms = Object.entries(statePlatforms)
-			.filter(([_key, value]) => value === true)
-			.map(([key, _value]) => key);
-
-		setGameData({
-			...gameData,
-			genres: genres,
-			platforms: platforms,
-		});
-
+		console.log(gameData);
 		dispatch(createGame(gameData));
 	};
 
@@ -121,20 +80,47 @@ const CreateGame = () => {
 
 					<h3>Genres</h3>
 					<section>
-						{Object.keys(stateGenres).map((genre) => (
-							<button key={genre} onClick={handleGenres}>
+						{[
+							"action",
+							"indie",
+							"adventure",
+							"rpg",
+							"strategy",
+							"shooter",
+							"casual",
+							"arcade",
+							"racing",
+							"fantasy",
+						].map((genre) => (
+							<label key={genre}>
+								<input
+									type="checkbox"
+									name="genres"
+									value={genre}
+									checked={gameData.genres.includes(genre)}
+									onChange={handleGenres}
+								/>
 								{genre.charAt(0).toUpperCase() + genre.slice(1)}
-							</button>
+							</label>
 						))}
 					</section>
 
 					<h3>Platforms</h3>
 					<section>
-						{Object.keys(statePlatforms).map((platform) => (
-							<button key={platform} onClick={handlePlatforms}>
-								{platform.charAt(0).toUpperCase() + platform.slice(1)}
-							</button>
-						))}
+						{["pc", "xbox", "playstation", "nintendo", "sega"].map(
+							(platform) => (
+								<label key={platform}>
+									<input
+										type="checkbox"
+										name="platforms"
+										value={platform}
+										checked={gameData.platforms.includes(platform)}
+										onChange={handlePlatforms}
+									/>
+									{platform.charAt(0).toUpperCase() + platform.slice(1)}
+								</label>
+							)
+						)}
 					</section>
 
 					<label>Released: </label>

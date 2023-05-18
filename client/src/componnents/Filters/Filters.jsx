@@ -1,12 +1,7 @@
 import React from "react";
 import style from "./Filters.module.css";
 import { useDispatch } from "react-redux";
-import {
-	filterApi,
-	filterDB,
-	getVideoGames,
-	handleStateFilter,
-} from "../../redux/actions";
+import { filter, getVideoGames, handleStateFilter } from "../../redux/actions";
 
 const Filters = () => {
 	const dispatch = useDispatch();
@@ -14,19 +9,19 @@ const Filters = () => {
 	const handleChange = (event) => {
 		const value = event.target.value;
 
+		if (value === "all") {
+			dispatch(handleStateFilter(value));
+			dispatch(getVideoGames());
+		}
+
 		if (value === "api") {
 			dispatch(handleStateFilter(value));
-			dispatch(filterApi());
+			dispatch(filter(value));
 		}
 
 		if (value === "database") {
 			dispatch(handleStateFilter(value));
-			dispatch(filterDB());
-		}
-
-		if (value === "all") {
-			dispatch(handleStateFilter(value));
-			dispatch(getVideoGames());
+			dispatch(filter(value));
 		}
 	};
 
@@ -34,10 +29,16 @@ const Filters = () => {
 		<div className={style.conteiner}>
 			<h3>Filter:</h3>
 			<select className={style.select} onChange={handleChange}>
-				<option value="filter" disabled="disabled" className={style.disable}>
+				<option
+					className={style.disable}
+					selected="Filter By"
+					disabled="disable"
+				>
 					Filter By
 				</option>
-				<option value="all">All</option>
+				<option defaultValue="all" value="all">
+					All
+				</option>
 				<option value="api">Api</option>
 				<option value="database">Database</option>
 			</select>

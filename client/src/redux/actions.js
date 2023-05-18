@@ -7,9 +7,9 @@ import {
 	GET_GAME_BY_NAME,
 	CLEAN_DETAIL,
 	TOGGLE_MENU,
-	FILTER_BY_API,
-	FILTER_BY_DB,
+	FILTER,
 	ORDER_BY_API,
+	ORDER_BY_DB,
 	STATE_FILTER,
 	CREATED_GAME,
 } from "./action-types";
@@ -50,21 +50,14 @@ export const getName = (name) => {
 };
 
 //! Filter
-export const filterApi = () => {
+export const filter = (value) => {
 	return async (dispatch) => {
 		try {
-			const { data } = await axios(`${HOST}/filter/api`);
-			return dispatch({ type: FILTER_BY_API, payload: data });
+			const { data } = await axios(`${HOST}/videogames/filter?name=${value}`);
+			return dispatch({ type: FILTER, payload: data });
 		} catch (error) {
 			console.log(error.message);
 		}
-	};
-};
-
-export const filterDB = () => {
-	return async (dispatch) => {
-		const data = "FILTRADO POR DB XD";
-		dispatch({ type: FILTER_BY_DB, payload: data });
 	};
 };
 
@@ -73,6 +66,13 @@ export const orderApi = (name) => {
 	return async (dispatch) => {
 		const { data } = await axios(`${HOST}/order/api?name=${name}`);
 		return dispatch({ type: ORDER_BY_API, payload: data });
+	};
+};
+
+export const orderDB = (name) => {
+	return async (dispatch) => {
+		const { data } = await axios(`${HOST}/order/database?name=${name}`);
+		return dispatch({ type: ORDER_BY_DB, payload: data });
 	};
 };
 

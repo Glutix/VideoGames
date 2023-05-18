@@ -4,9 +4,9 @@ import {
 	GET_GAME_BY_NAME,
 	CLEAN_DETAIL,
 	TOGGLE_MENU,
-	FILTER_BY_API,
-	FILTER_BY_DB,
+	FILTER,
 	ORDER_BY_API,
+	ORDER_BY_DB,
 	STATE_FILTER,
 	CREATED_GAME,
 } from "./action-types";
@@ -42,18 +42,11 @@ const reducer = (state = initialState, action) => {
 			};
 
 		//! Filter
-		case FILTER_BY_API:
+		case FILTER:
 			return {
 				...state,
 				games: action.payload,
 			};
-
-		case FILTER_BY_DB: {
-			return {
-				...state,
-				games: action.payload,
-			};
-		}
 
 		//! Order
 		case ORDER_BY_API: {
@@ -61,6 +54,9 @@ const reducer = (state = initialState, action) => {
 				...state,
 				games: action.payload,
 			};
+		}
+
+		case ORDER_BY_DB: {
 		}
 
 		//!Post

@@ -5,17 +5,30 @@ const router = express.Router();
 //! Controllers
 const {
 	getAllGames,
-	getIdGames,
-	getNameGames,
-	postGame,
-} = require("../controllers/videogames");
+	getGamesByName,
+	createGame,
+	getGamesById,
+} = require("../controllers/index");
 
-//! Get
+//! Get All
 router.get("/", getAllGames);
-router.get("/search", getNameGames);
-router.get("/:idVideogame", getIdGames);
+
+//! Search Game Name
+router.get("/search", getGamesByName);
 
 //! Post
-router.post("/post", postGame);
+router.post("/post", createGame);
+
+//! Get Games ID
+router.get("/:idVideogame", getGamesById);
+
+//!           <<< --- Utils --- >>>
+const { filter, order } = require("../Utils/index");
+
+//? Filter
+router.get("/filter", filter);
+
+//? Order
+router.post("/order", order);
 
 module.exports = router;

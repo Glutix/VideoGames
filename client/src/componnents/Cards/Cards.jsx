@@ -27,20 +27,16 @@ const Cards = () => {
 				<Order />
 			</section>
 			<div className={`${style.conteiner} ${isOpen && style.isOpenOn}`}>
-				{typeof games !== "string" ? (
-					games.map((game) => {
-						return (
-							<Card
-								key={game.id}
-								id={game.id}
-								name={game.name}
-								image={game.image}
-							/>
-						);
-					})
-				) : (
-					<h1>NO HAY GAMES</h1>
-				)}
+				{games.map((game) => {
+					return (
+						<Card
+							key={game.id}
+							id={game.id}
+							name={game.name}
+							image={game.image}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);
