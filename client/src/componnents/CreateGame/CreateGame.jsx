@@ -51,7 +51,6 @@ const CreateGame = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(gameData);
 		dispatch(createGame(gameData));
 	};
 

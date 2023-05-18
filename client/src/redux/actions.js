@@ -8,8 +8,7 @@ import {
 	CLEAN_DETAIL,
 	TOGGLE_MENU,
 	FILTER,
-	ORDER_BY_API,
-	ORDER_BY_DB,
+	SORTED,
 	STATE_FILTER,
 	CREATED_GAME,
 } from "./action-types";
@@ -54,25 +53,11 @@ export const filter = (value) => {
 	return async (dispatch) => {
 		try {
 			const { data } = await axios(`${HOST}/videogames/filter?name=${value}`);
+
 			return dispatch({ type: FILTER, payload: data });
 		} catch (error) {
 			console.log(error.message);
 		}
-	};
-};
-
-//! Order
-export const orderApi = (name) => {
-	return async (dispatch) => {
-		const { data } = await axios(`${HOST}/order/api?name=${name}`);
-		return dispatch({ type: ORDER_BY_API, payload: data });
-	};
-};
-
-export const orderDB = (name) => {
-	return async (dispatch) => {
-		const { data } = await axios(`${HOST}/order/database?name=${name}`);
-		return dispatch({ type: ORDER_BY_DB, payload: data });
 	};
 };
 
@@ -87,6 +72,17 @@ export const createGame = (game) => {
 		} catch (error) {
 			alert(error.response.data.error);
 		}
+	};
+};
+
+//! Sorted
+export const sorted = (name, data) => {
+	return async (dispatch) => {
+		const response = await axios.post(
+			`${HOST}/videogames/order?name=${name}`,
+			data
+		);
+		return dispatch({ type: SORTED, payload: response.data });
 	};
 };
 

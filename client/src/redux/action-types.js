@@ -12,8 +12,7 @@ export const FILTER = "FILTER";
 export const STATE_FILTER = "STATE_FILTER";
 
 //? ORDER
-export const ORDER_BY_API = "ORDER_BY_API";
-export const ORDER_BY_DB = "ORDER_BY_DB";
+export const SORTED = "SORTED";
 
 //? Post
 export const CREATED_GAME = "CREATED_GAME";

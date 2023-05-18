@@ -10,6 +10,12 @@ const {
 	getGamesById,
 } = require("../controllers/index");
 
+const { filter, order } = require("../Utils/index");
+
+//! Utils
+router.post("/order", order);
+router.get("/filter", filter);
+
 //! Get All
 router.get("/", getAllGames);
 
@@ -21,14 +27,5 @@ router.post("/post", createGame);
 
 //! Get Games ID
 router.get("/:idVideogame", getGamesById);
-
-//!           <<< --- Utils --- >>>
-const { filter, order } = require("../Utils/index");
-
-//? Filter
-router.get("/filter", filter);
-
-//? Order
-router.post("/order", order);
 
 module.exports = router;

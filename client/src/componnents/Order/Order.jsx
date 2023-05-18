@@ -1,24 +1,16 @@
 import React from "react";
 import style from "./Order.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { orderApi } from "../../redux/actions";
+import { sorted } from "../../redux/actions";
 
 const Order = () => {
 	const dispatch = useDispatch();
-	const stateFilter = useSelector((state) => state.stateFilter);
+	const games = useSelector((state) => state.games);
 
-	//? esto queda asi
-	let handleChange = () => {};
 
-	//? (Luego modificar la condicion del if)
-	if (stateFilter === "database") {
-		dispatch(orderDB())
-	}
-
-	//? si no, ordeno por api o all
-	handleChange = (event) => {
+	const handleChange = (event) => {
 		const value = event.target.value;
-		dispatch(orderApi(value));
+		dispatch(sorted(value, games));
 	};
 
 	return (

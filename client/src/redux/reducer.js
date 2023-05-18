@@ -5,8 +5,7 @@ import {
 	CLEAN_DETAIL,
 	TOGGLE_MENU,
 	FILTER,
-	ORDER_BY_API,
-	ORDER_BY_DB,
+	SORTED,
 	STATE_FILTER,
 	CREATED_GAME,
 } from "./action-types";
@@ -49,14 +48,11 @@ const reducer = (state = initialState, action) => {
 			};
 
 		//! Order
-		case ORDER_BY_API: {
+		case SORTED: {
 			return {
 				...state,
 				games: action.payload,
 			};
-		}
-
-		case ORDER_BY_DB: {
 		}
 
 		//!Post

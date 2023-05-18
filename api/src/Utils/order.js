@@ -4,8 +4,6 @@ const order = async (req, res) => {
 		const { name } = req.query;
 		const data = req.body;
 
-		console.log(data);
-
 		// si no recibo una query
 		if (!name) throw new Error("Not query");
 
