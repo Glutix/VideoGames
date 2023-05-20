@@ -8,15 +8,22 @@ import {
 	SORTED,
 	STATE_FILTER,
 	CREATED_GAME,
+	PAGE,
 } from "./action-types";
+
+//! Utils
+import filter from "../componnents/Utils/filter";
+import sorted from "../componnents/Utils/sorted";
 
 const initialState = {
 	games: [],
+	allGames: [],
 	gameDetail: {},
 	gamesByName: [],
 	addGame: [],
 	toglleMenu: false,
 	stateFilter: "",
+	page: 1,
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,7 +32,7 @@ const reducer = (state = initialState, action) => {
 		case GET_VIDEOGAMES:
 			return {
 				...state,
-				games: action.payload,
+				allGames: action.payload,
 			};
 
 		case GET_GAME_BY_ID:
@@ -42,16 +49,21 @@ const reducer = (state = initialState, action) => {
 
 		//! Filter
 		case FILTER:
+			//* la funcion filter recibe dos parametros un name un array
+			const games = filter(action.payload, state.allGames);
+
 			return {
 				...state,
-				games: action.payload,
+				games: games,
 			};
 
 		//! Order
 		case SORTED: {
+			//* la funcion sorted recibe dos parametros, order y un array
+			const sortedData = sorted(action.payload, state.games);
 			return {
 				...state,
-				games: action.payload,
+				games: [...sortedData],
 			};
 		}
 
@@ -64,6 +76,12 @@ const reducer = (state = initialState, action) => {
 		}
 
 		//! Config
+		case PAGE:
+			return {
+				...state,
+				page: action.payload,
+			};
+
 		case CLEAN_DETAIL:
 			return {
 				...state,
@@ -80,6 +98,7 @@ const reducer = (state = initialState, action) => {
 				...state,
 				stateFilter: action.payload,
 			};
+
 		default:
 			return { ...state };
 	}

@@ -1,44 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./Filters.module.css";
-import { useDispatch } from "react-redux";
-import { filter, getVideoGames, handleStateFilter } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { filter, handleStateFilter } from "../../redux/actions";
 
 const Filters = () => {
 	const dispatch = useDispatch();
+	const allGames = useSelector((state) => state.allGames);
+
+	//* Se queda escuchando a (allGames) => y se despacha el filtrado "all"
+	useEffect(() => {
+		dispatch(filter("all"));
+	}, [allGames]);
 
 	const handleChange = (event) => {
-		const value = event.target.value;
+		const name = event.target.value;
 
-		if (value === "all") {
-			dispatch(handleStateFilter(value));
-			dispatch(getVideoGames());
+		if (name === "all") {
+			dispatch(handleStateFilter(name));
+			dispatch(filter(name));
 		}
 
-		if (value === "api") {
-			dispatch(handleStateFilter(value));
-			dispatch(filter(value));
+		if (name === "api") {
+			dispatch(handleStateFilter(name));
+			dispatch(filter(name));
 		}
 
-		if (value === "database") {
-			dispatch(handleStateFilter(value));
-			dispatch(filter(value));
+		if (name === "database") {
+			dispatch(handleStateFilter(name));
+			dispatch(filter(name));
 		}
 	};
 
 	return (
 		<div className={style.conteiner}>
 			<h3>Filter:</h3>
-			<select className={style.select} onChange={handleChange}>
-				<option
-					className={style.disable}
-					selected="Filter By"
-					disabled="disable"
-				>
+			<select
+				className={style.select}
+				onChange={handleChange}
+				defaultValue="Filter By"
+			>
+				<option className={style.disable} value="Filter By" disabled="disable">
 					Filter By
 				</option>
-				<option defaultValue="all" value="all">
-					All
-				</option>
+				<option value="all">All</option>
 				<option value="api">Api</option>
 				<option value="database">Database</option>
 			</select>

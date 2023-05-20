@@ -130,7 +130,7 @@ const CreateGame = () => {
 						onChange={handleChange}
 					/>
 
-					<label>rating: </label>
+					<label>Rating: </label>
 					<input
 						type="text"
 						name="rating"
@@ -138,7 +138,7 @@ const CreateGame = () => {
 						onChange={handleChange}
 					/>
 
-					<label>description: </label>
+					<label>Description: </label>
 					<textarea
 						name="description"
 						cols="30"

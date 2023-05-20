@@ -5,23 +5,27 @@ import { sorted } from "../../redux/actions";
 
 const Order = () => {
 	const dispatch = useDispatch();
-	const games = useSelector((state) => state.games);
-
-
+	/* 	const games = useSelector((state) => state.games);
+	 */
 	const handleChange = (event) => {
-		const value = event.target.value;
-		dispatch(sorted(value, games));
+		const name = event.target.value;
+		dispatch(sorted(name));
 	};
 
 	return (
 		<div className={style.conteiner}>
 			<h3>Order: </h3>
-			<select className={style.select} onChange={handleChange}>
-				<option selected="Order By" disabled="disabled">
+			<select
+				className={style.select}
+				onChange={handleChange}
+				defaultValue="Order By"
+			>
+				<option value="Order By" disabled="disabled">
 					Order By
 				</option>
 				<option value="ascendente">Ascendente</option>
 				<option value="descendente">Descendente</option>
+				<option value="rating">Rating</option>
 			</select>
 		</div>
 	);

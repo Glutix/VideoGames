@@ -25,7 +25,7 @@ const getGamesByName = async (req, res) => {
 			throw new Error("No existe el game");
 		}
 
-		const responseApi = data.results.slice(0, 15).map((game) => {
+		const responseApi = data.results.slice(0, 16).map((game) => {
 			const games = {
 				id: game.id,
 				name: game.name,
@@ -39,7 +39,7 @@ const getGamesByName = async (req, res) => {
 		});
 
 		const link = [...responseDB, ...responseApi];
-		const response = link.slice(0, 15);
+		const response = link.slice(0, 16);
 
 		return res.status(200).json(response);
 	} catch (error) {

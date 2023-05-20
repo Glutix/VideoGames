@@ -1,43 +1,58 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "../Card/Card";
 import style from "./Cards.module.css";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+//! Hooks
+import { useSelector, useDispatch } from "react-redux";
+
+//! Utils
 import { getVideoGames } from "../../redux/actions";
+import paginado from "../Utils/paginado";
+
+//!components
 import Filters from "../Filters/Filters";
 import Order from "../Order/Order";
+import Pages from "../Pages/Pages";
+import FilterGenres from "../FilterGenres/FilterGenres";
+
 
 const Cards = () => {
+	const dispatch = useDispatch();
 	//! Global State
-	const { games, isOpen } = useSelector((state) => ({
+	const { page, games, isOpen } = useSelector((state) => ({
 		games: state.games,
 		isOpen: state.toglleMenu,
+		page: state.page,
 	}));
 
-	const dispatch = useDispatch();
-
 	useEffect(() => {
-		if (!games.length) dispatch(getVideoGames());
-	}, [games]);
+		dispatch(getVideoGames(6));
+	}, [dispatch]);
+
+	//* controlador de elementos a renderizar
+	const gamesPages = paginado(page, 16, games);
 
 	return (
 		<div className={style.conteinerPRO}>
 			<section className={style.section}>
+				<FilterGenres />
 				<Filters />
 				<Order />
 			</section>
 			<div className={`${style.conteiner} ${isOpen && style.isOpenOn}`}>
-				{games.map((game) => {
+				{gamesPages?.map((game) => {
 					return (
 						<Card
 							key={game.id}
 							id={game.id}
 							name={game.name}
 							image={game.image}
+							rating={game.rating}
 						/>
 					);
 				})}
 			</div>
+			<Pages />
 		</div>
 	);
 };

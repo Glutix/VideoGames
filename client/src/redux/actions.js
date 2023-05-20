@@ -11,14 +11,16 @@ import {
 	SORTED,
 	STATE_FILTER,
 	CREATED_GAME,
+	PAGE,
 } from "./action-types";
 const HOST = import.meta.env.VITE_HOST;
 
 //! Get
-export const getVideoGames = () => {
+
+export const getVideoGames = (param) => {
 	return async (dispatch) => {
 		try {
-			const { data } = await axios(`${HOST}/videogames`);
+			const { data } = await axios(`${HOST}/videogames/?page=${param}`);
 			return dispatch({ type: GET_VIDEOGAMES, payload: data });
 		} catch (error) {
 			console.log(error.message);
@@ -48,19 +50,6 @@ export const getName = (name) => {
 	};
 };
 
-//! Filter
-export const filter = (value) => {
-	return async (dispatch) => {
-		try {
-			const { data } = await axios(`${HOST}/videogames/filter?name=${value}`);
-
-			return dispatch({ type: FILTER, payload: data });
-		} catch (error) {
-			console.log(error.message);
-		}
-	};
-};
-
 //! Post
 export const createGame = (game) => {
 	return async (dispatch) => {
@@ -75,15 +64,14 @@ export const createGame = (game) => {
 	};
 };
 
+//! Filter
+export const filter = (name) => {
+	return { type: FILTER, payload: name };
+};
+
 //! Sorted
-export const sorted = (name, data) => {
-	return async (dispatch) => {
-		const response = await axios.post(
-			`${HOST}/videogames/order?name=${name}`,
-			data
-		);
-		return dispatch({ type: SORTED, payload: response.data });
-	};
+export const sorted = (name) => {
+	return { type: SORTED, payload: name };
 };
 
 //! Config
@@ -102,5 +90,11 @@ export const handleToggle = (isOpen) => {
 export const handleStateFilter = (string) => {
 	return (dispatch) => {
 		return dispatch({ type: STATE_FILTER, payload: string });
+	};
+};
+
+export const handlePage = (num) => {
+	return (dispatch) => {
+		return dispatch({ type: PAGE, payload: num });
 	};
 };

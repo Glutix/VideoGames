@@ -6,6 +6,7 @@ export const GET_GAME_BY_NAME = "GET_GAME_BY_NAME";
 //?Utils
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const TOGGLE_MENU = "TOGGLE_MENU";
+export const PAGE = "PAGE";
 
 //?Filter
 export const FILTER = "FILTER";
