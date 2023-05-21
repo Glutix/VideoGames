@@ -17,3 +17,6 @@ export const SORTED = "SORTED";
 
 //? Post
 export const CREATED_GAME = "CREATED_GAME";
+
+//? asd
+export const GET_ALL_GENRES = "GET_ALL_GENRES";

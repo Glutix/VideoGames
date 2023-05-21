@@ -1,0 +1,18 @@
+.conteiner {
+	display: flex;
+  position: absolute;
+	flex-direction: column;
+	background-color: #333;
+	width: 30rem;
+	height: fit-content;
+  text-align: center;
+  top: 4rem;
+  left: 0;
+}
+
+.conteinerItems {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	gap: 1rem;
+}

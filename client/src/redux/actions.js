@@ -12,10 +12,22 @@ import {
 	STATE_FILTER,
 	CREATED_GAME,
 	PAGE,
+	GET_ALL_GENRES,
 } from "./action-types";
 const HOST = import.meta.env.VITE_HOST;
 
 //! Get
+
+export const getAllGenres = () => {
+	return async (dispatch) => {
+		try {
+			const { data } = await axios(`${HOST}/videogames/genres`);
+			return dispatch({ type: GET_ALL_GENRES, payload: data });
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+};
 
 export const getVideoGames = (param) => {
 	return async (dispatch) => {

@@ -11,6 +11,8 @@ import Detail from "./componnents/Detail/Detail";
 import About from "./componnents/About/About";
 import CardsName from "./componnents/CardsName/CardsName";
 import CreateGame from "./componnents/CreateGame/CreateGame";
+import Genres from "./componnents/Genres/Genres";
+import DetailGenres from "./componnents/DetailGenres/DetailGenres";
 
 function App() {
 	//! Utils
@@ -26,6 +28,8 @@ function App() {
 				<Route path="/about" element={<About />} />
 				<Route path="/search" element={<CardsName />} />
 				<Route path="/post" element={<CreateGame />} />
+				<Route path="/home" element={<Genres />} />
+				<Route path="/genres" element={<DetailGenres />} />
 			</Routes>
 		</div>
 	);

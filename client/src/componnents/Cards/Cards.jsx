@@ -13,8 +13,7 @@ import paginado from "../Utils/paginado";
 import Filters from "../Filters/Filters";
 import Order from "../Order/Order";
 import Pages from "../Pages/Pages";
-import FilterGenres from "../FilterGenres/FilterGenres";
-
+import Genres from "../Genres/Genres";
 
 const Cards = () => {
 	const dispatch = useDispatch();
@@ -35,7 +34,7 @@ const Cards = () => {
 	return (
 		<div className={style.conteinerPRO}>
 			<section className={style.section}>
-				<FilterGenres />
+				<Genres />
 				<Filters />
 				<Order />
 			</section>

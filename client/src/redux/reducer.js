@@ -9,6 +9,7 @@ import {
 	STATE_FILTER,
 	CREATED_GAME,
 	PAGE,
+	GET_ALL_GENRES,
 } from "./action-types";
 
 //! Utils
@@ -18,6 +19,7 @@ import sorted from "../componnents/Utils/sorted";
 const initialState = {
 	games: [],
 	allGames: [],
+	allGenres: [],
 	gameDetail: {},
 	gamesByName: [],
 	addGame: [],
@@ -29,6 +31,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		//! get
+		case GET_ALL_GENRES:
+			return {
+				...state,
+				allGenres: action.payload,
+			};
+
 		case GET_VIDEOGAMES:
 			return {
 				...state,

@@ -8,7 +8,10 @@ const {
 	getGamesByName,
 	createGame,
 	getGamesById,
+	getAllGenres,
 } = require("../controllers/index");
+
+router.get("/genres", getAllGenres);
 
 //! Get All
 router.get("/", getAllGames);
@@ -21,6 +24,5 @@ router.get("/:idVideogame", getGamesById);
 
 //! Post
 router.post("/post", createGame);
-
 
 module.exports = router;

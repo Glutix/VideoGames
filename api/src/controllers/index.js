@@ -4,6 +4,8 @@ const { getGamesById } = require("./getGamesById");
 const { getGamesByName } = require("./getGamesByName");
 const { createGame } = require("./CreateGame");
 
+const { getAllGenres } = require("./getGenres");
+
 //! All exports
 module.exports = {
 	getGamesByName,
@@ -12,4 +14,5 @@ module.exports = {
 	getAllGamesAPI,
 	getAllGamesDB,
 	createGame,
+	getAllGenres,
 };
