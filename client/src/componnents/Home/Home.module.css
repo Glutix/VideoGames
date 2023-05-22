@@ -16,6 +16,7 @@
 	height: fit-content;
 }
 
+
 @media screen and (max-width: 780px) {
 	.conteiner {
 		display: flex;

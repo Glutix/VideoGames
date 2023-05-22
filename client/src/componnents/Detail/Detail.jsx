@@ -28,7 +28,7 @@ const Detail = () => {
 					<h2 className={style.title2}>Rating: </h2>
 					<p className={style.description}>{detail.rating}</p>
 
-					<h2 className={style.title2}>Plataformas: </h2>
+					<h2 className={style.title2}>Platforms: </h2>
 					<p className={style.description}>{detail.platforms}</p>
 
 					<h2 className={style.title2}>Genres: </h2>

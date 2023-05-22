@@ -1,27 +1,27 @@
+//! imports
 import React from "react";
-import Card from "../Card/Card";
 import style from "./CardsName.module.css";
+
+//! Hooks
 import { useSelector } from "react-redux";
+
+//! componnents
+import Cards from "../Cards/Cards";
+import Genres from "../Genres/Genres";
 
 const CardsName = () => {
 	//! Global State
-	const { gamesByName, isOpen } = useSelector((state) => ({
-		gamesByName: state.gamesByName,
+	const { games, isOpen } = useSelector((state) => ({
+		games: state.games,
 		isOpen: state.toglleMenu,
 	}));
 
 	return (
-		<div className={`${style.conteiner} ${isOpen && style.isOpenOn}`}>
-			{gamesByName.map((game) => {
-				return (
-					<Card
-						key={game.id}
-						id={game.id}
-						name={game.name}
-						image={game.image}
-					/>
-				);
-			})}
+		<div className={style.conteinerPrincipal}>
+			<div className={style.conteiner}>
+				<Genres />
+				<Cards games={games} />
+			</div>
 		</div>
 	);
 };

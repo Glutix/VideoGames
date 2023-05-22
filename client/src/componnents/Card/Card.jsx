@@ -9,7 +9,9 @@ const Card = ({ id, name, image, rating }) => {
 				<img className={style.img} src={image} alt={name} />
 			</Link>
 			<h2 className={style.name}>{name}</h2>
-			<h3 className={style.rating}>{rating}</h3>
+			<div className={style.rating}>
+				<h3 className={style.ratingText}>{rating}</h3>
+			</div>
 		</div>
 	);
 };

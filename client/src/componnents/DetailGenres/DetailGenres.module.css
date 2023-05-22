@@ -1,0 +1,17 @@
+.conteinerPrincipal {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	background-color: var(--color-primario);
+}
+
+
+.conteiner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: calc(100% - 14rem);
+	margin-top: 4rem;
+	height: fit-content;
+}

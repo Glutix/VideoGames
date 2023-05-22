@@ -1,24 +1,151 @@
-.conteinerDad {
+.conteinerPrincipal {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	background-color: var(--color-primario);
 	margin-top: 4rem;
+	width: 100%;
+	min-height: 100vh;
+}
+
+.title {
+	font-size: 1.5rem;
 }
 
 .conteiner {
 	display: flex;
 	justify-content: center;
-	flex-direction: column;
+	background-color: var(--color-secundario);
+	flex-wrap: wrap;
+	width: 40%;
+	border-radius: 2rem;
+	margin-bottom: 2rem;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 1rem;
+}
+
+.conteinerCampus {
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	height: 4rem;
+	text-align: center;
+	align-items: center;
+	
+	.errors{
+		margin-left: 2rem;
+	}
 }
 
 
-.asd{
+.errors {
+	font-size: 0.8rem;
+	color: yellow;
+	margin-top: .1rem;
+}
+
+.subTitle {
+	font-size: 1rem;
+	margin: 0;
+}
+
+.conteinerSection {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 30rem;
+	height: fit-content;
+	margin-bottom: .5rem;
+}
+
+
+.section {
+	display: flex;
+	flex-direction: row;
+	width: 50%;
+	margin-left: 2rem;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: .5rem;
+	margin-bottom: 1rem;
+}
+
+.subCampus {
+	text-align: center;
+	height: 3rem;
+}
+
+.conteinCheck {
+	width: 6rem;
+}
+
+.released{
+	margin-top: -1rem;
+}
+
+
+
+.ratingTitle{
+	font-size: 1rem;
+}
+
+.rating{
+	text-align: center;
+	margin: 1rem;
+}
+
+.slider{
+	display: flex;
+	cursor: pointer;
+	width: 8rem;
+}
+
+
+
+.texarea{
+	margin-left: 2rem;
+	width: 21rem;
+	border-radius: 10px;
+	padding: 1rem;
 	
+}
+
+.texarea::placeholder{
+	color: #f3f3f3
+}
+
+.countChar{
+	position: relative;
+	left: 10rem;
+}
+
+.btn{
+	border-radius: 8px;
+	border: 1px solid transparent;
+	font-weight: 500;
+	margin-left: 2rem;
+	height: 2rem;
+	width: 4rem;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: #f3f3f3;
+	color: var(--color-btn);
+	transition: border-color 0.25s;
+}
+
+
+.btn:hover {
+	border-color: var(--color-btn-hover);
+}
+.btn:focus,
+.btn:focus-visible {
+	outline: 4px auto -webkit-focus-ring-color;
 }

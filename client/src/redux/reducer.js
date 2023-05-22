@@ -52,7 +52,7 @@ const reducer = (state = initialState, action) => {
 		case GET_GAME_BY_NAME:
 			return {
 				...state,
-				gamesByName: action.payload,
+				games: action.payload,
 			};
 
 		//! Filter

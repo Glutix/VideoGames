@@ -1,9 +1,11 @@
 :root {
-	--color-primario: #000;
+	--color-primario: #151515;
 	--color-secundario: #333;
 	--color-card: #3335;
 	--color-hover: #d62828;
 	--coor-place-holder: rgba(255, 255, 255, 0.7);
+	--color-btn: rgb(60, 60, 250);
+	--color-btn-hover: #646cff;
 
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;

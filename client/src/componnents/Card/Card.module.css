@@ -8,6 +8,7 @@
 	border: 1px transparent black;
 	transition: transform 0.3s ease-in-out;
 	width: 15rem;
+	height: 22rem;
 	margin-bottom: 1rem;
 }
 
@@ -30,17 +31,23 @@
 }
 
 .name {
-	font-size: .8rem;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 1rem;
+	font-family: 'Times New Roman', Times, serif;
 	font-weight: 500;
 	letter-spacing: 1px;
 }
 
 .rating{
-	background-color: #13b3839f;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: green;
 	border-radius: 4px;
+	width: 2.5rem;
+	height: 2.5rem;
+}
+.ratingText{
 	font-size: 1rem;
-	letter-spacing: 2px;
 }
 
 @media screen and (max-width: 780px) {

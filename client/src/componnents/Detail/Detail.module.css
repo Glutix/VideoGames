@@ -8,14 +8,14 @@
 }
 
 .title {
-	color: rgb(210, 5, 5);
+	color: #f3f3f3c4;
 	letter-spacing: 1px;
 	margin: 0;
 	padding-bottom: 2rem;
 }
 
 .title2 {
-	color: rgba(210, 5, 5, 0.7);
+	color: #f3f3f3c4
 }
 
 .video {
