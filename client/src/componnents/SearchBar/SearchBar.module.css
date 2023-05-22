@@ -1,11 +1,28 @@
+.conteinerSearch {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+	gap: 0.5rem;
+}
+
+.input {
+	background-color: var(--color-secundario);
+	border-radius: 1rem;
+	font-size: 1rem;
+	text-align: center;
+}
+.input::placeholder {
+	color: var(--coor-place-holder);
+}
+
 .btn {
 	border-radius: 8px;
 	border: 1px solid transparent;
-	padding: 0.6em 1.2em;
 	font-size: 1rem;
 	font-weight: 500;
 	font-family: inherit;
-	background-color: #1a1a1a;
+	background-color: var(--color-secundario);
 	cursor: pointer;
 	transition: border-color 0.25s;
 }

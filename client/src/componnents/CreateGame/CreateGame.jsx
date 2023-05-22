@@ -1,11 +1,16 @@
+//! imports
 import React from "react";
 import style from "./CreateGame.module.css";
+
+//! Hooks
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+
+//! Utils
 import { createGame } from "../../redux/actions";
+import validate from "../Utils/validate";
 
 const CreateGame = () => {
-	//! Hooks
 	const dispatch = useDispatch();
 
 	//! Local States
@@ -15,43 +20,65 @@ const CreateGame = () => {
 		genres: [],
 		platforms: [],
 		released: "",
-		rating: "",
+		rating: 1,
 		description: "",
 	});
+
+	const [errors, setErrors] = useState({});
 
 	//! Handlers
 	const handleChange = (event) => {
 		const campoActual = event.target.name;
 		const valorActual = event.target.value;
+
 		setGameData({
 			...gameData,
 			[campoActual]: valorActual,
 		});
+
+		setErrors(
+			validate({
+				...gameData,
+				[campoActual]: valorActual,
+			})
+		);
 	};
 
-	const handleGenres = (event) => {
-		const genre = event.target.value;
-		setGameData((prevData) => ({
-			...prevData,
-			genres: prevData.genres.includes(genre)
-				? prevData.genres.filter((g) => g !== genre)
-				: [...prevData.genres, genre],
-		}));
-	};
+	const handleValue = (event) => {
+		const campoActual = event.target.name;
+		const valorActual = event.target.value;
 
-	const handlePlatforms = (event) => {
-		const platform = event.target.value;
-		setGameData((prevData) => ({
-			...prevData,
-			platforms: prevData.platforms.includes(platform)
-				? prevData.platforms.filter((p) => p !== platform)
-				: [...prevData.platforms, platform],
-		}));
+		setGameData({
+			...gameData,
+			[campoActual]: gameData[campoActual].includes(valorActual)
+				? gameData[campoActual].filter((item) => item !== valorActual)
+				: [...gameData[campoActual], valorActual],
+		});
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		dispatch(createGame(gameData));
+
+		//* Si no tengo errores
+		if (errors.isValid) {
+			//reinicio los campos
+			setGameData({
+				name: "",
+				image: "",
+				genres: [],
+				platforms: [],
+				released: "",
+				rating: 1,
+				description: "",
+			});
+			alert("Game created");
+
+			//reinicio el estado del boton
+			setErrors({ isValid: false });
+		} else {
+			alert("Datos incompletos");
+		}
 	};
 
 	return (
@@ -67,6 +94,7 @@ const CreateGame = () => {
 						value={gameData.name}
 						onChange={handleChange}
 					></input>
+					<p>{errors.name}</p>
 
 					<label>Image: </label>
 					<input
@@ -76,20 +104,22 @@ const CreateGame = () => {
 						value={gameData.image}
 						onChange={handleChange}
 					/>
+					<p>{errors.image}</p>
 
 					<h3>Genres</h3>
+					<p>{errors.genres}</p>
 					<section>
 						{[
-							"action",
-							"indie",
-							"adventure",
-							"rpg",
-							"strategy",
-							"shooter",
-							"casual",
-							"arcade",
-							"racing",
-							"fantasy",
+							"Action",
+							"Indie",
+							"Adventure",
+							"RPG",
+							"Strategy",
+							"Shooter",
+							"Casual",
+							"Arcade",
+							"Racing",
+							"Fantasy",
 						].map((genre) => (
 							<label key={genre}>
 								<input
@@ -97,16 +127,17 @@ const CreateGame = () => {
 									name="genres"
 									value={genre}
 									checked={gameData.genres.includes(genre)}
-									onChange={handleGenres}
+									onChange={handleValue}
 								/>
-								{genre.charAt(0).toUpperCase() + genre.slice(1)}
+								{genre}
 							</label>
 						))}
 					</section>
 
 					<h3>Platforms</h3>
+					<p>{errors.platforms}</p>
 					<section>
-						{["pc", "xbox", "playstation", "nintendo", "sega"].map(
+						{["Pc", "Xbox", "Playstation", "Nintendo", "Sega"].map(
 							(platform) => (
 								<label key={platform}>
 									<input
@@ -114,9 +145,9 @@ const CreateGame = () => {
 										name="platforms"
 										value={platform}
 										checked={gameData.platforms.includes(platform)}
-										onChange={handlePlatforms}
+										onChange={handleValue}
 									/>
-									{platform.charAt(0).toUpperCase() + platform.slice(1)}
+									{platform}
 								</label>
 							)
 						)}
@@ -131,23 +162,37 @@ const CreateGame = () => {
 					/>
 
 					<label>Rating: </label>
-					<input
-						type="text"
-						name="rating"
-						value={gameData.rating}
-						onChange={handleChange}
-					/>
+					<div>
+						<input
+							name="rating"
+							type="range"
+							min="1"
+							max="5"
+							step="0.1"
+							value={gameData.rating}
+							onChange={handleChange}
+							className="slider"
+						/>
+						<div className="score">
+							{parseFloat(gameData.rating).toFixed(1)}
+						</div>
+					</div>
 
 					<label>Description: </label>
+					<p>{errors.description}</p>
 					<textarea
 						name="description"
 						cols="30"
 						rows="10"
 						value={gameData.description}
 						onChange={handleChange}
+						maxLength="500"
 					></textarea>
+					<div>{gameData.description.length}/500</div>
 
-					<button type="submit">Sumbit</button>
+					<button type="submit" disabled={!errors.isValid}>
+						Sumbit
+					</button>
 				</form>
 			</div>
 		</div>

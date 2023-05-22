@@ -31,6 +31,12 @@ const NavBar = () => {
 				<SearchBar />
 			</div>
 
+
+			<div
+				className={`${style.conteinerItems} ${
+					isOpen && style.conteinerItemsOpen
+				}`}
+			>
 			<div className={style.conteinerNewGame}>
 				<button onClick={hangleNewGame} className={style.btnGame}>
 					+
@@ -39,12 +45,6 @@ const NavBar = () => {
 					New Game
 				</p>
 			</div>
-
-			<div
-				className={`${style.conteinerItems} ${
-					isOpen && style.conteinerItemsOpen
-				}`}
-			>
 				<Link to="/home" className={style.link} onClick={handleClick}>
 					Home
 				</Link>

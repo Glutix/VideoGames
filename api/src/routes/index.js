@@ -7,6 +7,5 @@ const videogames = require("./videogames");
 
 //! Routes
 router.use("/videogames", videogames);
-//router.use("/login", login);
 
 module.exports = router;

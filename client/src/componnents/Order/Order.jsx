@@ -14,7 +14,7 @@ const Order = () => {
 
 	return (
 		<div className={style.conteiner}>
-			<h3>Order: </h3>
+			<h3 className={style.title}>Order: </h3>
 			<select
 				className={style.select}
 				onChange={handleChange}

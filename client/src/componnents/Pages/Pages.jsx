@@ -44,13 +44,13 @@ const Pages = () => {
 
 	return (
 		<div className={style.conteiner}>
-			<button onClick={handleClick} disabled={disablePrev}>
+			<button className={style.button} onClick={handleClick} disabled={disablePrev}>
 				prev
 			</button>
 			<p>
 				page {current} of {limit}
 			</p>
-			<button onClick={handleClick} disabled={disableNext}>
+			<button className={style.button} onClick={handleClick} disabled={disableNext}>
 				next
 			</button>
 		</div>

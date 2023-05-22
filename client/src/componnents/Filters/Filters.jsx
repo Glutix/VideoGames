@@ -33,7 +33,7 @@ const Filters = () => {
 
 	return (
 		<div className={style.conteiner}>
-			<h3>Filter:</h3>
+			<h3 className={style.title}>Filter:</h3>
 			<select
 				className={style.select}
 				onChange={handleChange}

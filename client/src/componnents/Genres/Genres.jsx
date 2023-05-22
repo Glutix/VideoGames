@@ -9,7 +9,22 @@ import { useEffect } from "react";
 
 const Genres = () => {
 	const dispatch = useDispatch();
-	const allGenres = useSelector((state) => state.allGenres);
+	const data = useSelector((state) => state.allGenres);
+
+	//Recupero solo datos que me interesan
+	const allGenres = data.filter(
+		(genre) =>
+			[
+				"Action",
+				"Strategy",
+				"RPG",
+				"Shooter",
+				"Adventure",
+				"Puzzle",
+				"Racing",
+				"Sports",
+			].includes(genre.name) && genre.image_background
+	);
 
 	useEffect(() => {
 		dispatch(getAllGenres());
@@ -17,13 +32,18 @@ const Genres = () => {
 
 	return (
 		<div className={style.conteiner}>
-			<h1>Genres</h1>
+			<h3 className={style.title}>Genres</h3>
 			<div className={style.conteinerItems}>
-				{allGenres.map((genre) => {
+				{allGenres.map((genre, index) => {
 					return (
-						<Link key={genre.name} to={`/genres?genre=${genre.name}`}>
-							{genre.name}
-						</Link>
+						<div className={style.items} key={index}>
+							<img
+								className={style.img}
+								src={genre.image_background}
+								alt={genre.name}
+							/>
+							<Link className={style.link} to={`/genres?genre=${genre.name}`}>{genre.name}</Link>
+						</div>
 					);
 				})}
 			</div>

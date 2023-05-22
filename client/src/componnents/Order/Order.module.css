@@ -4,10 +4,16 @@
   justify-content: center;
   align-items: center;
   gap: .5rem;
+  height: min-content;
 }
 
 .select{
   text-align: center;
-  width: fit-content;
-  height: fit-content;
+}
+
+
+.title {
+	color: white;
+	font-size: 1rem;
+  letter-spacing: 1px;
 }

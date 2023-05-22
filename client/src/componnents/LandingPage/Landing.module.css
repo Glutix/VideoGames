@@ -1,8 +1,13 @@
 .landing {
 	display: flex;
 	justify-content: flex-end;
-	height: 100vh;
+	background-image: url("../public/landingpage.avif");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 	width: 100%;
+	min-height: 100vh;
+	
 }
 
 .conteiner {

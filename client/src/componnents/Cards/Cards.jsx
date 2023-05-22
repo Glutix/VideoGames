@@ -32,26 +32,28 @@ const Cards = () => {
 	const gamesPages = paginado(page, 16, games);
 
 	return (
-		<div className={style.conteinerPRO}>
-			<section className={style.section}>
-				<Genres />
-				<Filters />
-				<Order />
-			</section>
-			<div className={`${style.conteiner} ${isOpen && style.isOpenOn}`}>
-				{gamesPages?.map((game) => {
-					return (
-						<Card
-							key={game.id}
-							id={game.id}
-							name={game.name}
-							image={game.image}
-							rating={game.rating}
-						/>
-					);
-				})}
+		<div className={style.conteinerPrincipal}>
+			<Genres />
+			<div className={style.conteiner}>
+				<section className={style.section}>
+					<Filters />
+					<Order />
+				</section>
+				<div className={`${style.conteinerCards} ${isOpen && style.isOpenOn}`}>
+					{gamesPages?.map((game) => {
+						return (
+							<Card
+								key={game.id}
+								id={game.id}
+								name={game.name}
+								image={game.image}
+								rating={game.rating}
+							/>
+						);
+					})}
+				</div>
+				<Pages />
 			</div>
-			<Pages />
 		</div>
 	);
 };

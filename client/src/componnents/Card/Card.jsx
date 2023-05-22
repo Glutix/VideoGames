@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const Card = ({ id, name, image, rating }) => {
 	return (
 		<div className={style.conteiner}>
-			<h2 className={style.name}>{name}</h2>
 			<Link to={`/detail/${id}`}>
 				<img className={style.img} src={image} alt={name} />
 			</Link>
-			<h2>{rating}</h2>
+			<h2 className={style.name}>{name}</h2>
+			<h3 className={style.rating}>{rating}</h3>
 		</div>
 	);
 };
