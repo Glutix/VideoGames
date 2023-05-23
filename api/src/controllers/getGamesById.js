@@ -21,6 +21,8 @@ const getGamesById = async (req, res) => {
 				include: { model: Genre, as: "genres" },
 			});
 
+			if (!data.id) throw new Error("No existe un juego con este id");
+
 			const game = {
 				id: idVideogame,
 				name: data.name,
@@ -29,7 +31,10 @@ const getGamesById = async (req, res) => {
 				released: data.released,
 				rating: data.rating,
 				platforms: data.platforms.sort().join(" "),
-				genres: data.genres.map((item) => item.name).sort(),
+				genres: data.genres
+					.map((item) => item.name)
+					.sort()
+					.join(" "),
 			};
 
 			return res.status(200).json(game);
@@ -37,17 +42,23 @@ const getGamesById = async (req, res) => {
 
 		const { data } = await axios.get(`${URL}games/${idVideogame}?key=${KEY}`);
 
-		if (!data.id) throw new Error("No existe id");
+		if (!data.id) throw new Error("No existe un juego con este id");
 
 		const game = {
 			id: idVideogame,
 			name: data.name,
 			image: data.background_image,
-			platforms: data.platforms.map((item) => item.platform.name).sort(),
+			platforms: data.platforms
+				.map((item) => item.platform.name)
+				.sort()
+				.join(" "),
 			description: data.description_raw,
 			released: data.released,
 			rating: data.rating,
-			genres: data.genres.map((item) => item.name).sort(),
+			genres: data.genres
+				.map((item) => item.name)
+				.sort()
+				.join(" "),
 		};
 		return res.status(200).json(game);
 	} catch (error) {

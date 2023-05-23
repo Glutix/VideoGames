@@ -1,12 +1,11 @@
 import React from "react";
 import style from "./Order.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { sorted } from "../../redux/actions";
 
 const Order = () => {
 	const dispatch = useDispatch();
-	/* 	const games = useSelector((state) => state.games);
-	 */
+
 	const handleChange = (event) => {
 		const name = event.target.value;
 		dispatch(sorted(name));

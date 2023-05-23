@@ -11,15 +11,17 @@
 
 .title {
 	font-size: 1.5rem;
+	color: var(--color-text);
 }
 
 .conteiner {
 	display: flex;
 	justify-content: center;
+	width: 50%;
+	height: 100%;
 	background-color: var(--color-secundario);
-	flex-wrap: wrap;
-	width: 40%;
 	border-radius: 2rem;
+	color: var(--color-text);
 	margin-bottom: 2rem;
 }
 
@@ -27,32 +29,31 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	flex-wrap: nowrap;
 	margin: 1rem;
+	min-width: 100%;
+	gap: 1rem;
 }
 
 .conteinerCampus {
 	display: flex;
 	flex-direction: column;
-	width: 60%;
+	width: fit-content;
 	height: 4rem;
 	text-align: center;
 	align-items: center;
-	
-	.errors{
-		margin-left: 2rem;
-	}
 }
-
 
 .errors {
 	font-size: 0.8rem;
 	color: yellow;
-	margin-top: .1rem;
+	margin-top: 0.1rem;
 }
 
 .subTitle {
 	font-size: 1rem;
 	margin: 0;
+	color: var(--color-text);
 }
 
 .conteinerSection {
@@ -60,87 +61,72 @@
 	flex-direction: column;
 	align-items: center;
 	flex-wrap: wrap;
-	width: 30rem;
+	width: 80%;
 	height: fit-content;
-	margin-bottom: .5rem;
-}
-
-
-.section {
-	display: flex;
-	flex-direction: row;
-	width: 50%;
-	margin-left: 2rem;
-	justify-content: flex-start;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: .5rem;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 }
 
 .subCampus {
 	text-align: center;
+	align-items: center;
 	height: 3rem;
+	padding: .5rem;
+}
+
+.section {
+	display: flex;
+	flex-direction: row;
+	width: 80%;
+	height: fit-content;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	gap: 0.5rem;
+	margin-left: 5rem;
 }
 
 .conteinCheck {
-	width: 6rem;
+	width: fit-content;
+	height: fit-content;
 }
 
-.released{
-	margin-top: -1rem;
-}
-
-
-
-.ratingTitle{
-	font-size: 1rem;
-}
-
-.rating{
+.rating {
 	text-align: center;
 	margin: 1rem;
 }
 
-.slider{
+.slider {
 	display: flex;
 	cursor: pointer;
 	width: 8rem;
 }
 
-
-
-.texarea{
-	margin-left: 2rem;
-	width: 21rem;
+.texarea {
+	width: 70%;
 	border-radius: 10px;
 	padding: 1rem;
-	
 }
 
-.texarea::placeholder{
-	color: #f3f3f3
+.texarea::placeholder {
+	color: var(--color-placeholder);
 }
 
-.countChar{
-	position: relative;
-	left: 10rem;
+.inputs::placeholder {
+	color: var(--color-placeholder);
 }
 
-.btn{
+.btn {
 	border-radius: 8px;
 	border: 1px solid transparent;
 	font-weight: 500;
-	margin-left: 2rem;
 	height: 2rem;
 	width: 4rem;
 	cursor: pointer;
 	border-radius: 5px;
-	background-color: #f3f3f3;
-	color: var(--color-btn);
+	background-color: var(--color-btn);
+	color: var(--color-text);
 	transition: border-color 0.25s;
 }
-
 
 .btn:hover {
 	border-color: var(--color-btn-hover);

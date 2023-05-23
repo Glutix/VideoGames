@@ -23,12 +23,9 @@ const DetailGenres = () => {
 	}));
 
 	// consigo la query y filtrar por genero.
-	const location = useLocation();
-	const genre = location.search.split("=")[1];
 
 	useEffect(() => {
-		dispatch(filterGenre(genre));
-		return () => dispatch(handleStateFilter(""));
+		dispatch(filterGenre(stateFilter));
 	}, [stateFilter, allGames]);
 
 	//* controlador de elementos a renderizar

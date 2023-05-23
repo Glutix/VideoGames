@@ -87,30 +87,28 @@ const CreateGame = () => {
 			<div className={style.conteiner}>
 				<form className={style.form} onSubmit={handleSubmit}>
 					<div className={style.conteinerCampus}>
-						<div className={style.name}>
-							<label>Name: </label>
-							<input
-								type="text"
-								name="name"
-								placeholder="name"
-								value={gameData.name}
-								onChange={handleChange}
-							></input>
-						</div>
+						<label>Name: </label>
+						<input
+							type="text"
+							name="name"
+							placeholder="name"
+							value={gameData.name}
+							onChange={handleChange}
+							className={style.inputs}
+						></input>
 						<p className={style.errors}>{errors.name}</p>
 					</div>
 
 					<div className={style.conteinerCampus}>
-						<div className={style.image}>
-							<label>Image: </label>
-							<input
-								type="text"
-								name="image"
-								placeholder="URL"
-								value={gameData.image}
-								onChange={handleChange}
-							/>
-						</div>
+						<label>Image: </label>
+						<input
+							type="text"
+							name="image"
+							placeholder="URL"
+							value={gameData.image}
+							onChange={handleChange}
+							className={style.inputs}
+						/>
 						<p className={style.errors}>{errors.image}</p>
 					</div>
 
@@ -132,8 +130,8 @@ const CreateGame = () => {
 								"Racing",
 								"Fantasy",
 							].map((genre) => (
-								<div className={style.conteinCheck}>
-									<label key={genre}>
+								<div key={genre} className={style.conteinCheck}>
+									<label>
 										<input
 											type="checkbox"
 											name="genres"
@@ -156,8 +154,8 @@ const CreateGame = () => {
 						<section className={style.section}>
 							{["Pc", "Xbox", "Playstation", "Nintendo", "Sega", "Steam"].map(
 								(platform) => (
-									<div className={style.conteinCheck}>
-										<label key={platform}>
+									<div key={platform} className={style.conteinCheck}>
+										<label>
 											<input
 												type="checkbox"
 												name="platforms"
@@ -177,18 +175,18 @@ const CreateGame = () => {
 						<label>
 							<h3 className={style.subTitle}>Released:</h3>
 						</label>
+						<input
+							type="date"
+							name="released"
+							value={gameData.released}
+							onChange={handleChange}
+							className={style.released}
+						/>
 					</div>
-					<input
-						type="date"
-						name="released"
-						value={gameData.released}
-						onChange={handleChange}
-						className={style.released}
-					/>
 
 					<div className={style.rating}>
 						<label>
-							<h3 className={style.ratingTitle}>Rating:</h3>
+							<h3 className={style.subTitle}>Rating:</h3>
 						</label>
 						<div>
 							<input
@@ -201,9 +199,9 @@ const CreateGame = () => {
 								onChange={handleChange}
 								className={style.slider}
 							/>
-							<div className="score">
-								{parseFloat(gameData.rating).toFixed(1)}
-							</div>
+						</div>
+						<div className="score">
+							{parseFloat(gameData.rating).toFixed(1)}
 						</div>
 					</div>
 
@@ -213,6 +211,7 @@ const CreateGame = () => {
 						</label>
 						<p className={style.errors}>{errors.description}</p>
 					</div>
+
 					<textarea
 						name="description"
 						cols="30"

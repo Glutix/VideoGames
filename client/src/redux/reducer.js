@@ -62,11 +62,11 @@ const reducer = (state = initialState, action) => {
 		//! Filter
 		case FILTER:
 			//* la funcion filter recibe dos parametros un name un array
-			const games = filter(action.payload, state.allGames);
+			const gamesFilter = filter(action.payload, state.allGames);
 
 			return {
 				...state,
-				games: [...games],
+				games: [...gamesFilter],
 			};
 
 		case FILTER_GENRE:
@@ -80,10 +80,10 @@ const reducer = (state = initialState, action) => {
 		//! Order
 		case SORTED: {
 			//* la funcion sorted recibe dos parametros, order y un array
-			const sortedData = sorted(action.payload, state.allGames);
+			const sortedData = sorted(action.payload, state.games);
 			return {
 				...state,
-				allGames: [...sortedData],
+				games: [...sortedData],
 			};
 		}
 

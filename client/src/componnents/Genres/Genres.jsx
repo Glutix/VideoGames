@@ -48,11 +48,7 @@ const Genres = () => {
 								src={genre.image_background}
 								alt={genre.name}
 							/>
-							<Link
-								onClick={handleClick}
-								className={style.link}
-								to={`/genres?genre=${genre.name}`}
-							>
+							<Link onClick={handleClick} className={style.link} to="/genres">
 								{genre.name}
 							</Link>
 						</div>
