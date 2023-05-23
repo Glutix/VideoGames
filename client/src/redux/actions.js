@@ -8,6 +8,7 @@ import {
 	CLEAN_DETAIL,
 	TOGGLE_MENU,
 	FILTER,
+	FILTER_GENRE,
 	SORTED,
 	STATE_FILTER,
 	CREATED_GAME,
@@ -17,7 +18,6 @@ import {
 const HOST = import.meta.env.VITE_HOST;
 
 //! Get
-
 export const getAllGenres = () => {
 	return async (dispatch) => {
 		try {
@@ -79,6 +79,10 @@ export const createGame = (game) => {
 //! Filter
 export const filter = (name) => {
 	return { type: FILTER, payload: name };
+};
+
+export const filterGenre = (genre) => {
+	return { type: FILTER_GENRE, payload: genre };
 };
 
 //! Sorted

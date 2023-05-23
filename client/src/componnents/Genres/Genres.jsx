@@ -42,7 +42,9 @@ const Genres = () => {
 								src={genre.image_background}
 								alt={genre.name}
 							/>
-							<Link className={style.link} to={`/genres?genre=${genre.name}`}>{genre.name}</Link>
+							<Link className={style.link} to={`/genres?genre=${genre.name}`}>
+								{genre.name}
+							</Link>
 						</div>
 					);
 				})}

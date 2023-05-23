@@ -1,18 +1,15 @@
 //! Import
-import { getAllGenres } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-//! Hooks
-import { useEffect } from "react";
-
 //! Utils
-import filterGenre from "../Utils/filterGenre";
+import { filterGenre, getAllGenres } from "../../redux/actions";
 
 //! Componnents
 import Genres from "../Genres/Genres";
 import Cards from "../Cards/Cards";
 import style from "../DetailGenres/DetailGenres.module.css";
+import { useEffect } from "react";
 
 const DetailGenres = () => {
 	const dispatch = useDispatch();
@@ -25,20 +22,17 @@ const DetailGenres = () => {
 
 	// consigo la query y filtrar por genero.
 	const location = useLocation();
-	const name = location.search.split("=")[1];
-	const arrayId = filterGenre(allGenres, name);
-
-	const gamesFound = games.filter((game) => arrayId.includes(game.id));
+	const genre = location.search.split("=")[1];
 
 	useEffect(() => {
-		dispatch(getAllGenres());
-	}, [dispatch]);
+		dispatch(filterGenre(genre));
+	}, [dispatch, genre]);
 
 	return (
 		<div className={style.conteinerPrincipal}>
 			<div className={style.conteiner}>
 				<Genres />
-				<Cards games={gamesFound} />
+				<Cards games={games} />
 			</div>
 		</div>
 	);

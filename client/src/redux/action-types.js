@@ -10,6 +10,7 @@ export const PAGE = "PAGE";
 
 //?Filter
 export const FILTER = "FILTER";
+export const FILTER_GENRE = "FILTER_GENRE";
 export const STATE_FILTER = "STATE_FILTER";
 
 //? ORDER

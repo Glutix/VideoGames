@@ -5,6 +5,7 @@ import {
 	CLEAN_DETAIL,
 	TOGGLE_MENU,
 	FILTER,
+	FILTER_GENRE,
 	SORTED,
 	STATE_FILTER,
 	CREATED_GAME,
@@ -15,6 +16,7 @@ import {
 //! Utils
 import filter from "../componnents/Utils/filter";
 import sorted from "../componnents/Utils/sorted";
+import getArrId from "../componnents/Utils/getArrId";
 
 const initialState = {
 	games: [],
@@ -62,7 +64,19 @@ const reducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				games: games,
+				games: [...games],
+			};
+
+		case FILTER_GENRE:
+			//* Obtengo todos los id de los generos, y filtro los que coincidan
+			const arrayId = getArrId([...state.allGenres], action.payload);
+			const gamesFound = state.allGames.filter((game) =>
+				arrayId.includes(game.id)
+			);
+
+			return {
+				...state,
+				games: [...gamesFound],
 			};
 
 		//! Order
