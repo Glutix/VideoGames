@@ -1,23 +1,25 @@
 //! Import
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 //! Utils
-import { filterGenre, getAllGenres } from "../../redux/actions";
+import { filterGenre, handleStateFilter } from "../../redux/actions";
+import paginado from "../Utils/paginado";
 
 //! Componnents
 import Genres from "../Genres/Genres";
 import Cards from "../Cards/Cards";
 import style from "../DetailGenres/DetailGenres.module.css";
-import { useEffect } from "react";
 
 const DetailGenres = () => {
 	const dispatch = useDispatch();
 	//! Global State
-	const { games, isOpen, allGenres } = useSelector((state) => ({
+	const { games, page, stateFilter, allGames } = useSelector((state) => ({
 		games: state.games,
-		isOpen: state.toglleMenu,
-		allGenres: state.allGenres,
+		allGames: state.allGames,
+		page: state.page,
+		stateFilter: state.stateFilter,
 	}));
 
 	// consigo la query y filtrar por genero.
@@ -26,13 +28,17 @@ const DetailGenres = () => {
 
 	useEffect(() => {
 		dispatch(filterGenre(genre));
-	}, [dispatch, genre]);
+		return () => dispatch(handleStateFilter(""));
+	}, [stateFilter, allGames]);
+
+	//* controlador de elementos a renderizar
+	const gamesPages = paginado(page, 16, games);
 
 	return (
 		<div className={style.conteinerPrincipal}>
 			<div className={style.conteiner}>
 				<Genres />
-				<Cards games={games} />
+				<Cards games={gamesPages} />
 			</div>
 		</div>
 	);

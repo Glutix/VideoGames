@@ -17,7 +17,19 @@ const getAllGamesDB = async () => {
 
 		if (!response) throw new Error("No hay info en la db");
 
-		return { responseDB: response };
+		const gamesWithGenres = response.map((game) => {
+			// Por cada juego mapeo el genero y me quedo con los nombres
+			const genres = game.genres.map((genre) => genre.name);
+
+			//despues retorno un objeto con el mismo juego y piso su propiedad genres
+			// con sus nombres mapeados
+			return {
+				...game.toJSON(), //Se convierte a json standar para excluir la props adicionales
+				genres,
+			};
+		});
+
+		return { responseDB: gamesWithGenres };
 	} catch (error) {
 		return { error: error.message };
 	}

@@ -1,8 +1,9 @@
 //! Imports
 import React from "react";
 import { Link } from "react-router-dom";
-import { getAllGenres } from "../../redux/actions";
+import { getAllGenres, handleStateFilter } from "../../redux/actions";
 import style from "../Genres/Genres.module.css";
+
 //! Hooks
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -30,6 +31,11 @@ const Genres = () => {
 		dispatch(getAllGenres());
 	}, [dispatch]);
 
+	const handleClick = (event) => {
+		const value = event.target.innerHTML;
+		dispatch(handleStateFilter(value));
+	};
+
 	return (
 		<div className={style.conteiner}>
 			<h3 className={style.title}>Genres</h3>
@@ -42,7 +48,11 @@ const Genres = () => {
 								src={genre.image_background}
 								alt={genre.name}
 							/>
-							<Link className={style.link} to={`/genres?genre=${genre.name}`}>
+							<Link
+								onClick={handleClick}
+								className={style.link}
+								to={`/genres?genre=${genre.name}`}
+							>
 								{genre.name}
 							</Link>
 						</div>

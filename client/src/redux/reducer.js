@@ -16,15 +16,16 @@ import {
 //! Utils
 import filter from "../componnents/Utils/filter";
 import sorted from "../componnents/Utils/sorted";
-import getArrId from "../componnents/Utils/getArrId";
+import filterGamesGenre from "../componnents/Utils/filterGamesGenre";
 
 const initialState = {
 	games: [],
-	allGames: [],
-	allGenres: [],
+	gamesGenre: [],
 	gameDetail: {},
 	gamesByName: [],
 	addGame: [],
+	allGames: [],
+	allGenres: [],
 	toglleMenu: false,
 	stateFilter: "",
 	page: 1,
@@ -43,6 +44,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				allGames: action.payload,
+				games: action.payload,
 			};
 
 		case GET_GAME_BY_ID:
@@ -69,11 +71,7 @@ const reducer = (state = initialState, action) => {
 
 		case FILTER_GENRE:
 			//* Obtengo todos los id de los generos, y filtro los que coincidan
-			const arrayId = getArrId([...state.allGenres], action.payload);
-			const gamesFound = state.allGames.filter((game) =>
-				arrayId.includes(game.id)
-			);
-
+			const gamesFound = filterGamesGenre(state.allGames, action.payload);
 			return {
 				...state,
 				games: [...gamesFound],
@@ -82,10 +80,10 @@ const reducer = (state = initialState, action) => {
 		//! Order
 		case SORTED: {
 			//* la funcion sorted recibe dos parametros, order y un array
-			const sortedData = sorted(action.payload, state.games);
+			const sortedData = sorted(action.payload, state.allGames);
 			return {
 				...state,
-				games: [...sortedData],
+				allGames: [...sortedData],
 			};
 		}
 
