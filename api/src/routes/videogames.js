@@ -9,8 +9,11 @@ const {
 	createGame,
 	getGamesById,
 	getAllGenres,
+	deleteGame,
+	updateGame,
 } = require("../controllers/index");
 
+//! Get all genres
 router.get("/genres", getAllGenres);
 
 //! Get All
@@ -25,4 +28,9 @@ router.get("/:idVideogame", getGamesById);
 //! Post
 router.post("/post", createGame);
 
+//! Delete Game
+router.delete("/:id", deleteGame);
+
+//! Update Game
+router.put("/:id", updateGame);
 module.exports = router;

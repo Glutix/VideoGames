@@ -4,7 +4,7 @@ import style from "./CreateGame.module.css";
 
 //! Hooks
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //! Utils
 import { createGame } from "../../redux/actions";
@@ -12,6 +12,10 @@ import validate from "../Utils/validate";
 
 const CreateGame = () => {
 	const dispatch = useDispatch();
+
+	const data = useSelector((state) => state.allGenres);
+	const allGenres = data.filter((genre) => !genre.createdAt);
+
 
 	//! Local States
 	const [gameData, setGameData] = useState({
@@ -73,6 +77,7 @@ const CreateGame = () => {
 				description: "",
 			});
 			alert("Game created");
+			window.location.href = "http://localhost:5173/home";
 
 			//reinicio el estado del boton
 			setErrors({ isValid: false });
@@ -118,28 +123,17 @@ const CreateGame = () => {
 							<p className={style.errors}>{errors.genres}</p>
 						</div>
 						<section className={style.section}>
-							{[
-								"Action",
-								"Adventure",
-								"Indie",
-								"RPG",
-								"Strategy",
-								"Shooter",
-								"Casual",
-								"Arcade",
-								"Racing",
-								"Fantasy",
-							].map((genre) => (
-								<div key={genre} className={style.conteinCheck}>
+							{allGenres.map((genre) => (
+								<div key={genre.name} className={style.conteinCheck}>
 									<label>
 										<input
 											type="checkbox"
 											name="genres"
-											value={genre}
-											checked={gameData.genres.includes(genre)}
+											value={genre.name}
+											checked={gameData.genres.includes(genre.name)}
 											onChange={handleValue}
 										/>
-										{genre}
+										{genre.name}
 									</label>
 								</div>
 							))}

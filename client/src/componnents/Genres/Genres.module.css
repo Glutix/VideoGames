@@ -4,7 +4,12 @@
 	background-color: var(--color-primario);
 	width: 10rem;
 	height: 100vh;
-	position: fixed;
+
+
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: flex-start;
+	position: absolute;
 	top: 4rem;
 	left: 0;
 }

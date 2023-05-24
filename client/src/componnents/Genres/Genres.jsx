@@ -11,21 +11,7 @@ import { useEffect } from "react";
 const Genres = () => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.allGenres);
-
-	//Recupero solo datos que me interesan
-	const allGenres = data.filter(
-		(genre) =>
-			[
-				"Action",
-				"Strategy",
-				"RPG",
-				"Shooter",
-				"Adventure",
-				"Puzzle",
-				"Racing",
-				"Sports",
-			].includes(genre.name) && genre.image_background
-	);
+	const allGenres = data.filter((genre) => !genre.createdAt);
 
 	useEffect(() => {
 		dispatch(getAllGenres());

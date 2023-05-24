@@ -25,3 +25,28 @@
 	width: fit-content;
 	height: 2rem;
 }
+
+
+@media screen and (min-width: 785px) and (max-width: 980px) {
+	.conteinerCards {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		width: 100%;
+		min-height: 100vh;
+		gap: 1rem;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 785px) {
+	.conteinerCards {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+		min-height: 100vh;
+		gap: 1rem;
+		text-align: center;
+	}
+}

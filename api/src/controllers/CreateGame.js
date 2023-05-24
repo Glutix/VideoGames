@@ -22,8 +22,7 @@ const createGame = async (req, res) => {
 
 		//* buscar si ya existe el juego
 		const gameFound = await Videogame.findOne({
-			where: { name: `${name}` },
-			include: { model: Genre, as: "genres" },
+			where: { name: name },
 		});
 
 		if (gameFound) throw new Error("Ya existe un juego con este nombre");
@@ -31,10 +30,10 @@ const createGame = async (req, res) => {
 		const game = {
 			name,
 			description,
-			platforms,
 			image,
 			released,
 			rating,
+			platforms,
 		};
 
 		//* Si no existe lo creo

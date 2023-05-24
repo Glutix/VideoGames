@@ -63,8 +63,22 @@
 	}
 }
 
-@media screen and (min-width: 832px) and (max-width: 1000px) {
+@media screen and (max-width: 785px) {
 	.conteiner {
-		padding: 0 2rem;
+		background-color: var(--color-card);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		border-radius: 1rem;
+		border: 1px transparent black;
+		transition: transform 0.3s ease-in-out;
+		width: 25rem;
+		height: 30rem;
+		margin: 2rem;
+	}
+	
+	.img{
+		width: 80%;
 	}
 }
