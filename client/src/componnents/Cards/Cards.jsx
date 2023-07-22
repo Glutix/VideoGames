@@ -25,6 +25,8 @@ const Cards = ({ games }) => {
 								name={game.name}
 								image={game.image}
 								rating={game.rating}
+								genres = {game.genres}
+								platforms= {game.platforms}
 							/>
 						)
 					);

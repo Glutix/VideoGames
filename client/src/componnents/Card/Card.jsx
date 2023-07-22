@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 
-const Card = ({ id, name, image, rating }) => {
+const Card = ({ id, name, image, rating, genres, platforms }) => {
 	return (
 		<div className={style.conteiner}>
 			<Link to={`/detail/${id}`}>

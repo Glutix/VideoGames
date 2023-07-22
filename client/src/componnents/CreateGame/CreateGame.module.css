@@ -70,7 +70,7 @@
 	text-align: center;
 	align-items: center;
 	height: 3rem;
-	padding: .5rem;
+	padding: 0.5rem;
 }
 
 .section {
@@ -134,4 +134,12 @@
 .btn:focus,
 .btn:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
+}
+
+.btnDisable {
+	height: 2rem;
+	width: 4rem;
+	background-color: var(--color-secundario);
+	cursor: pointer;
+	border-radius: 5px;
 }

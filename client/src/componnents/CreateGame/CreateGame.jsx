@@ -3,11 +3,11 @@ import React from "react";
 import style from "./CreateGame.module.css";
 
 //! Hooks
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //! Utils
-import { createGame } from "../../redux/actions";
+import { createGame, getAllGenres } from "../../redux/actions";
 import validate from "../Utils/validate";
 
 const CreateGame = () => {
@@ -16,6 +16,9 @@ const CreateGame = () => {
 	const data = useSelector((state) => state.allGenres);
 	const allGenres = data.filter((genre) => !genre.createdAt);
 
+	useEffect(() => {
+		dispatch(getAllGenres());
+	}, [dispatch]);
 
 	//! Local States
 	const [gameData, setGameData] = useState({
@@ -221,7 +224,7 @@ const CreateGame = () => {
 					</div>
 
 					<button
-						className={style.btn}
+						className={`${errors.isValid ? style.btn : style.btnDisable}`}
 						type="submit"
 						disabled={!errors.isValid}
 					>
